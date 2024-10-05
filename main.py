@@ -3,6 +3,8 @@ from flask import render_template
 from flask import redirect
 from flask import request
 
+from peewee import *
+
 app = Flask(__name__)
 
 
