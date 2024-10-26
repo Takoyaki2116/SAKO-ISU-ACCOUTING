@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import redirect
 from flask import request
+from datebase import BusinessPartner
 
 from peewee import *
 
@@ -66,6 +67,33 @@ def quotation_create():
 @app.route("/quotation_edit")
 def quotation_edit():
   return render_template("quotation_edit.html")
+
+@app.route("/business_partner")
+def business_partner():
+  business_partners = BusinessPartner.select()
+  return render_template("business_partner.html", business_partners = business_partners)
+
+@app.route("/business_partner_create")
+def business_partner_create():
+  return render_template("business_partner_create.html")
+
+
+@app.route("/business_partner_edit")
+def business_partner_edit():
+  return render_template("business_partner_edit.html")
+
+@app.route("/new_business_partner", methods=["POST"])
+def new_business_partner():
+  name = request.form.get("name")
+  address = request.form.get("address")
+  contact = request.form.get("contact")
+  remarks = request.form.get("remarks")
+
+  bp = BusinessPartner(name=name, address=address, contact=contact, remarks=remarks)
+  bp.save()
+  return redirect("/business_partner")
+
+
 
 
 app.run(host='0.0.0.0', port=5001)
