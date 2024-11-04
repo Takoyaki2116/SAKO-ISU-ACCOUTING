@@ -6,10 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
-  <h1>This page is claim page</h1>
+  <h1>請求書一覧</h1>
+  <a href="/claim_create"">
+    追加はこちら
+  </a>
+  <table class="table table-info">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">件名</th>
+        <th scope="col">請求日</th>
+        <th scope="col">支払期日</th>
+        <th scope="col">合計金額</th>
+        <th scope="col">ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for claim in claim %}
+      <tr>
+        <th scope="row">{{claim.id}}</th>
+        <td>{{ claim.subject }}</td>
+        <td>{{ claim.day}}</td>
+        <td>{{ claim.payment }}</td>
+        <td>{{ claim.amount }}</td>
+        <td>{{ claim.status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    
+  </table>
 </body>
 </html>

@@ -3,7 +3,7 @@ from flask import render_template
 from flask import redirect
 from flask import request
 from datebase import BusinessPartner
-
+from datebase import Claim
 from peewee import *
 
 app = Flask(__name__)
@@ -26,7 +26,8 @@ def login():
 
 @app.route("/claim")
 def claim():
-  return render_template("claim.html")
+  claim = Claim.select()
+  return render_template("claim.html" , claim = claim)
 
 
 @app.route("/claim_create")
@@ -92,6 +93,18 @@ def new_business_partner():
   bp = BusinessPartner(name=name, address=address, contact=contact, remarks=remarks)
   bp.save()
   return redirect("/business_partner")
+
+@app.route("/new_claim", methods=["POST"])
+def new_claim():
+  subject = request.form.get("subject")
+  day = request.form.get("day")
+  payment = request.form.get("payment")
+  amount = request.form.get("amount")
+  status = request.form.get("status")
+
+  bp = Claim(subject=subject, day=day, payment=payment, amount=amount ,status=status)
+  bp.save()
+  return redirect("/claim")
 
 
 
