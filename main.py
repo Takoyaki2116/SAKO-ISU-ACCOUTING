@@ -34,7 +34,8 @@ def claim():
 
 @app.route("/claim_create")
 def claim_create():
-  return render_template("claim_create.html")
+  business_partner = BusinessPartner.select()
+  return render_template("claim_create.html" , business_partner = business_partner)
 
 
 @app.route("/claim_edit")
@@ -100,13 +101,14 @@ def new_business_partner():
 
 @app.route("/new_claim", methods=["POST"])
 def new_claim():
+  business_partner = request.form.get("business_partner")
   subject = request.form.get("subject")
   day = request.form.get("day")
   payment = request.form.get("payment")
   amount = request.form.get("amount")
   status = request.form.get("status")
 
-  C = Claim(subject=subject, day=day, payment=payment, amount=amount ,status=status)
+  C = Claim(subject=subject, day=day, payment=payment, amount=amount ,status=status, business_partner=business_partner)
   C.save()
   return redirect("/claim")
 

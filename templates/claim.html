@@ -44,6 +44,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+         <th scope="col">取引先</th>
         <th scope="col">件名</th>
         <th scope="col">請求日</th>
         <th scope="col">支払期日</th>
@@ -55,6 +56,7 @@
       {% for claim in claim %}
       <tr>
         <th scope="row">{{claim.id}}</th>
+        <td>{{ claim.business_partner.name }}</td>
         <td>{{ claim.subject }}</td>
         <td>{{ claim.day}}</td>
         <td>{{ claim.payment }}</td>

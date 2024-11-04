@@ -14,6 +14,7 @@ db.connect()
 db.create_tables([BusinessPartner], safe=True)
 
 class Claim(Model):
+    business_partner = ForeignKeyField(BusinessPartner, backref='claims')
     subject = CharField()
     day = DateField()
     payment = CharField()
