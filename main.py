@@ -4,6 +4,8 @@ from flask import redirect
 from flask import request
 from datebase import BusinessPartner
 from datebase import Claim
+from datebase import Receipt
+from datebase import Quotation
 from peewee import *
 
 app = Flask(__name__)
@@ -42,7 +44,8 @@ def claim_edit():
 
 @app.route("/receipt")
 def receipt():
-  return render_template("receipt.html")
+  receipt = Receipt.select()
+  return render_template("receipt.html" , receipt = receipt)
 
 
 @app.route("/receipt_create")
@@ -57,7 +60,8 @@ def receipt_edit():
 
 @app.route("/quotation")
 def quotation():
-  return render_template("quotation.html")
+  quotation = Quotation.select()
+  return render_template("quotation.html" , quotation = quotation)
 
 
 @app.route("/quotation_create")
@@ -102,9 +106,31 @@ def new_claim():
   amount = request.form.get("amount")
   status = request.form.get("status")
 
-  bp = Claim(subject=subject, day=day, payment=payment, amount=amount ,status=status)
-  bp.save()
+  C = Claim(subject=subject, day=day, payment=payment, amount=amount ,status=status)
+  C.save()
   return redirect("/claim")
+
+@app.route("/new_receipt", methods=["POST"])
+def new_raceipt():
+  subject = request.form.get("subject")
+  day = request.form.get("day")
+  amount = request.form.get("amount")
+  status = request.form.get("status")
+
+  R = Receipt(subject=subject, day=day, amount=amount ,status=status)
+  R.save()
+  return redirect("/receipt")
+
+@app.route("/new_quotation", methods=["POST"])
+def new_quotation():
+  subject = request.form.get("subject")
+  day = request.form.get("day")
+  amount = request.form.get("amount")
+  status = request.form.get("status")
+
+  Q = Quotation(subject=subject, day=day, amount=amount ,status=status)
+  Q.save()
+  return redirect("/quotation")
 
 
 

@@ -22,3 +22,21 @@ class Claim(Model):
     class Meta:
         database = db # This model uses the "people.db" database
 db.create_tables([Claim], safe=True)
+
+class Receipt(Model):
+    subject = CharField()
+    day = DateField()
+    amount = CharField()
+    status = CharField()
+    class Meta:
+        database = db # This model uses the "people.db" database
+db.create_tables([Receipt], safe=True)
+
+class Quotation(Model):
+    subject = CharField()
+    day = DateField()
+    amount = CharField()
+    status = CharField()
+    class Meta:
+        database = db # This model uses the "people.db" database
+db.create_tables([Quotation], safe=True)
