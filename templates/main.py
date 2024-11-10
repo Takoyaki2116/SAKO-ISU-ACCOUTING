@@ -51,6 +51,7 @@ def receipt():
 
 @app.route("/receipt_create")
 def receipt_create():
+  business_partner = BusinessPartner.select()
   return render_template("receipt_create.html", business_partner = business_partner)
 
 
@@ -67,6 +68,7 @@ def quotation():
 
 @app.route("/quotation_create")
 def quotation_create():
+  business_partner = BusinessPartner.select()
   return render_template("quotation_create.html" , business_partner = business_partner)
 
 
