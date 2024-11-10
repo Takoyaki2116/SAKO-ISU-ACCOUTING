@@ -51,7 +51,7 @@ def receipt():
 
 @app.route("/receipt_create")
 def receipt_create():
-  return render_template("receipt_create.html")
+  return render_template("receipt_create.html", business_partner = business_partner)
 
 
 @app.route("/receipt_edit")
@@ -67,7 +67,7 @@ def quotation():
 
 @app.route("/quotation_create")
 def quotation_create():
-  return render_template("quotation_create.html")
+  return render_template("quotation_create.html" , business_partner = business_partner)
 
 
 @app.route("/quotation_edit")
@@ -114,23 +114,25 @@ def new_claim():
 
 @app.route("/new_receipt", methods=["POST"])
 def new_raceipt():
+  business_partner = request.form.get("business_partner")
   subject = request.form.get("subject")
   day = request.form.get("day")
   amount = request.form.get("amount")
   status = request.form.get("status")
 
-  R = Receipt(subject=subject, day=day, amount=amount ,status=status)
+  R = Receipt(subject=subject, day=day, amount=amount ,status=status ,business_partner=business_partner)
   R.save()
   return redirect("/receipt")
 
 @app.route("/new_quotation", methods=["POST"])
 def new_quotation():
+  business_partner = request.form.get("business_partner")
   subject = request.form.get("subject")
   day = request.form.get("day")
   amount = request.form.get("amount")
   status = request.form.get("status")
 
-  Q = Quotation(subject=subject, day=day, amount=amount ,status=status)
+  Q = Quotation(subject=subject, day=day, amount=amount ,status=status , business_partner=business_partner)
   Q.save()
   return redirect("/quotation")
 

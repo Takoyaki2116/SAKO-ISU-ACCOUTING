@@ -45,6 +45,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">取引先</th>
         <th scope="col">件名</th>
         <th scope="col">見積日</th>
         <th scope="col">合計金額</th>
@@ -55,6 +56,7 @@
       {% for quotation in quotation %}
       <tr>
         <th scope="row">{{quotation.id}}</th>
+         <td>{{ quotation.business_partner.name }}</td>
         <td>{{ quotation.subject }}</td>
         <td>{{ quotation.day}}</td>
         <td>{{ quotation.amount }}</td>

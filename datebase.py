@@ -25,6 +25,7 @@ class Claim(Model):
 db.create_tables([Claim], safe=True)
 
 class Receipt(Model):
+    business_partner = ForeignKeyField(BusinessPartner, backref='receipts')
     subject = CharField()
     day = DateField()
     amount = CharField()
@@ -34,6 +35,7 @@ class Receipt(Model):
 db.create_tables([Receipt], safe=True)
 
 class Quotation(Model):
+    business_partner = ForeignKeyField(BusinessPartner, backref='quotation')
     subject = CharField()
     day = DateField()
     amount = CharField()

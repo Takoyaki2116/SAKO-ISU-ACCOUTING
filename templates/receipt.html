@@ -44,6 +44,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">取引先</th>
         <th scope="col">件名</th>
         <th scope="col">領収日</th>
         <th scope="col">合計金額</th>
@@ -54,6 +55,7 @@
       {% for receipt in receipt %}
       <tr>
         <th scope="row">{{receipt.id}}</th>
+         <td>{{ receipt.business_partner.name }}</td>
         <td>{{ receipt.subject }}</td>
         <td>{{ receipt.day}}</td>
         <td>{{ receipt.amount }}</td>
