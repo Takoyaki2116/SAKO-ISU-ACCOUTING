@@ -53,7 +53,9 @@
       {% for business_partner in business_partners %}
       <tr>
         <th scope="row">{{business_partner.id}}</th>
-        <td>{{ business_partner.name }}</td>
+        <td>
+          <a href="/business_partner_edit"> {{ business_partner.name }}</a>
+         </td>
         <td>{{ business_partner.address }}</td>
         <td>{{ business_partner.contact }}</td>
       </tr>

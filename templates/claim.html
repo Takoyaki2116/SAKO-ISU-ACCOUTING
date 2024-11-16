@@ -57,7 +57,9 @@
       <tr>
         <th scope="row">{{claim.id}}</th>
         <td>{{ claim.business_partner.name }}</td>
-        <td>{{ claim.subject }}</td>
+        <td>
+           <a href="/claim_edit"> {{ claim.subject }}</a>
+          </td>
         <td>{{ claim.day}}</td>
         <td>{{ claim.payment }}</td>
         <td>{{ claim.amount }}</td>

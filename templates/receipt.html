@@ -56,7 +56,9 @@
       <tr>
         <th scope="row">{{receipt.id}}</th>
          <td>{{ receipt.business_partner.name }}</td>
-        <td>{{ receipt.subject }}</td>
+        <td>
+          <a href="/receipt_edit"> {{ receipt.subject }}</a>
+          </td>
         <td>{{ receipt.day}}</td>
         <td>{{ receipt.amount }}</td>
         <td>{{ receipt.status }}</td>
