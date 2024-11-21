@@ -38,9 +38,10 @@ def claim_create():
   return render_template("claim_create.html" , business_partner = business_partner)
 
 
-@app.route("/claim_edit")
-def claim_edit():
-  return render_template("claim_edit.html")
+@app.route("/claim_edit/<id>")
+def claim_edit(id):
+  claim = Claim.get(id=id)
+  return render_template("claim_edit.html", claim = claim)
 
 
 @app.route("/receipt")
@@ -55,9 +56,10 @@ def receipt_create():
   return render_template("receipt_create.html", business_partner = business_partner)
 
 
-@app.route("/receipt_edit")
-def receipt_edit():
-  return render_template("receipt_edit.html")
+@app.route("/receipt_edit/<id>")
+def receipt_edit(id):
+  receipt = Receipt.get(id=id)
+  return render_template("receipt_edit.html", receipt = receipt)
 
 
 @app.route("/quotation")
@@ -72,9 +74,10 @@ def quotation_create():
   return render_template("quotation_create.html" , business_partner = business_partner)
 
 
-@app.route("/quotation_edit")
-def quotation_edit():
-  return render_template("quotation_edit.html")
+@app.route("/quotation_edit/<id>")
+def quotation_edit(id):
+  quotation = Quotation.get(id=id)
+  return render_template("quotation_edit.html", quotation = quotation)
 
 @app.route("/business_partner")
 def business_partner():
@@ -86,9 +89,10 @@ def business_partner_create():
   return render_template("business_partner_create.html")
 
 
-@app.route("/business_partner_edit")
-def business_partner_edit():
-  return render_template("business_partner_edit.html")
+@app.route("/business_partner_edit/<id>")
+def business_partner_edit(id):
+  business_partner = BusinessPartner.get(id=id)
+  return render_template("business_partner_edit.html", business_partner = business_partner)
 
 @app.route("/new_business_partner", methods=["POST"])
 def new_business_partner():
