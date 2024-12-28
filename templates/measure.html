@@ -39,20 +39,30 @@
   </nav>
   <form action="/measure_upload" method="post" enctype="multipart/form-data">
     <h1>見積依頼はこちら</h1>
-    <div class="mb-3">
-      <label for="formFile" class="form-label">ファイルを選択してください</label>
-      <input name="file" class="form-control" type="file" id="formFile">
-    </div>
+    
     
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">氏名</label>
       <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="氏名を入力してください">
     </div>
     <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">ふりがな</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="ふりがなを入力してください">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">メールアドレス</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力してください">
+    </div>
+    <div class="mb-3">
       <label for="exampleFormControlTextarea1" class="form-label">依頼内容の詳細</label>
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">依頼物の画像を入れてください</label>
+        <input name="file" class="form-control" type="file" id="formFile">
+      </div>
       
-    <button type="submit" class="btn btn-success">アップロード</button>
+    <button type="submit" class="btn btn-success">送信</button>
 
   </form>
   
