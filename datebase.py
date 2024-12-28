@@ -43,3 +43,13 @@ class Quotation(Model):
     class Meta:
         database = db # This model uses the "people.db" database
 db.create_tables([Quotation], safe=True)
+
+class Inquiry(Model):
+    name = CharField()
+    furigana = CharField(
+    mail = CharField()
+    detail  = CharField()
+    file = CharField()
+    class Meta:
+            database = db # This model uses the "people.db" database
+    db.create_tables([Inquiry], safe=True)
