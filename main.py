@@ -6,6 +6,7 @@ from datebase import BusinessPartner
 from datebase import Claim
 from datebase import Receipt
 from datebase import Quotation
+from datebase import Inquiry
 from peewee import *
 from werkzeug.utils import secure_filename
 import os
@@ -198,7 +199,7 @@ def measure_upload():
     mail = request.form.get("mail")
     detail = request.form.get("detail")
 
-    I= inquiry(name=name,
+    I= Inquiry(name=name,
                   furigana=furigana,
                   mail=mail,
                   detail=detail,)
