@@ -165,12 +165,10 @@ def new_raceipt():
   R.save()
   return redirect("/receipt")
 
-
 def allowed_file(filename):
   return '.' in filename and \
          filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
+  
 @app.route("/new_quotation", methods=["POST"])
 def new_quotation():
   business_partner = request.form.get("business_partner")
@@ -192,34 +190,36 @@ def new_quotation():
 def measure():
   return render_template("measure.html")
 
-
 @app.route("/measure_upload", methods=["POST"])
 def measure_upload():
-  if request.method == 'POST':
-    # check if the post request has the file part
-    if 'file' not in request.files:
-      return redirect(request.url)
-    file = request.files['file']
-    # If the user does not select a file, the browser submits an
-    # empty file without a filename.
-    if file.filename == '':
-      return redirect(request.url)
-    if file and allowed_file(file.filename):
-      filename = secure_filename(file.filename)
-      file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+  if request.method== 'POST':
+    name = request.form.get("name")
+    furigana = request.form.get("furigana")
+    mail = request.form.get("mail")
+    detail = request.form.get("detail")
 
-      img_bytes = file.read()
-      img = Image.open(io.BytesIO(img_bytes))
-
-      img_array = np.array(img)
-
-      model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True)
-      results = model(img_array)
-      detections = results.pandas().xyxy[0]
-      print(detections)
-
-      return redirect(request.url)
+    I= inquiry(name=name,
+                  furigana=furigana,
+                  mail=mail,
+                  detail=detail,)
+    I.save()
+  if 'file' not in request.files:
+    return redirect(request.url)
+  file = request.files['file']
+  if file.filename == '':
+    return redirect(request.url)
+  if file and allowed_file(file.filename):
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    img_bytes = file.read()
+    img = Image.open(io.BytesIO(img_bytes))
+    img_array = np.array(img)
+    model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True)
+    results = model(img_array)
+    detections = results.pandas().xyxy[0]
+    print(detections)
+    
+    return redirect(request.url)
   return ''
-
 
 app.run(host='0.0.0.0', port=5001)
